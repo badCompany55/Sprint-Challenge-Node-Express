@@ -52,8 +52,12 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     if (req.body.name && req.body.description) {
-      const theProject = projects.update(req.params.id, req.body);
-      res.status(200).json(req.body);
+      const testProject = await projects.get(req.params.id);
+      if (testProject) {
+        const theProject = await projects.update(req.params.id, req.body);
+        res.status(200).json(req.body);
+      } else
+        res.status(400).json({ Error: "The requested Project doesn't exist" });
     } else {
       res.status(400).json({ error: "Name and Description are required" });
     }

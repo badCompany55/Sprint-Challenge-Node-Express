@@ -46,6 +46,7 @@ router.put("/:id", async (req, res) => {
   try {
     if (req.body.project_id && req.body.description) {
       const theProject = await projects.get(req.body.project_id);
+      console.log(theProject);
       if (theProject) {
         const theActions = await actions.update(req.params.id, req.body);
         theActions == null
