@@ -7,7 +7,7 @@ const server = express();
 const projectRouter = require("./routes/projects.js");
 
 server.use(express.json());
-server.use("/projects", projectRouter);
+server.use("/api/projects", projectRouter);
 
 server.get("/", (req, res) => {
   res.send(`
